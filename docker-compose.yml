@@ -1,7 +1,10 @@
 services:
   rails:
     image: ruby:3.1.2
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     working_dir: /rails
     volumes:
       - .:/rails
       - ./rails-bundle:/usr/local/bundle
+    ports:
+      - ${RAILS_PORT:-3000}:3000
