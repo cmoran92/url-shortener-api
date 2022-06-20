@@ -1,2 +1,5 @@
 # Allow developers to stash files in /.attic
 /.attic
+
+# Ignore environment file
+/.env
