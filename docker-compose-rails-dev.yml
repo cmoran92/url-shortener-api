@@ -1,0 +1,6 @@
+services:
+  rails-dev:
+    extends:
+      service: rails_base
+      file: docker-compose.yml
+    command: sleep infinity

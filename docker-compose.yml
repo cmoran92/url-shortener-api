@@ -1,13 +1,18 @@
 services:
-  rails:
+  rails_base:
     build:
       context: docker
       dockerfile: Dockerfile-rails
     image: my-ruby:3.1.2.0
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     working_dir: /rails
     volumes:
       - .:/rails
       - ./rails-bundle:/usr/local/bundle
+
+  rails:
+    extends:
+      service: rails_base
+      file: docker-compose.yml
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     ports:
       - ${RAILS_PORT:-3000}:3000
