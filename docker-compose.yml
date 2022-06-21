@@ -1,3 +1,7 @@
 services:
   rails:
     image: ruby:3.1.2
+    working_dir: /rails
+    volumes:
+      - .:/rails
+      - ./rails-bundle:/usr/local/bundle
